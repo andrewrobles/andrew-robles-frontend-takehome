@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import quizQuestionData from '../data';
+import quizQuestionData from '../quizQuestionData';
 
 const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
@@ -10,7 +10,8 @@ const difficultyLevel='6'
 export default function Home() {
   // Keep track of question index
   const [state, setState] = useState({
-    'questionIndex': -1 
+    'questionIndex': -1,
+    'quizQuestionData': quizQuestionData
   })
 
   return (
