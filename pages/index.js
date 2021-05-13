@@ -8,11 +8,24 @@ const estimatedTime='30 minutes'
 const difficultyLevel='6'
 
 export default function Home() {
-  // Keep track of question index
   const [state, setState] = useState({
+    // -1 indicates quiz has not started
     'questionIndex': -1,
-    'quizQuestionData': quizQuestionData
+    'quizQuestionData': quizQuestionData,
+    // -1 indicates question has not yet been answered
+    'studentAnswers': Array(quizQuestionData.length).fill(-1)
   })
+
+  const selectQuestionOption = (questionIndex, optionId) => {
+    // studentAnswers maps to question and value maps to answer
+    const studentAnswers = state.studentAnswers
+
+    studentAnswers[questionIndex] = optionId
+
+    setState({
+      'studentAnswers': studentAnswers
+    })
+  }
 
   return (
     <div>
@@ -23,6 +36,7 @@ export default function Home() {
         <Content
           quizQuestionData={quizQuestionData}
           questionIndex={state.questionIndex}
+          selectQuestionOption={selectQuestionOption}
         />
         <Control 
           state={state}
@@ -46,6 +60,7 @@ function Content(props) {
       <Question 
         quizQuestionData={props.quizQuestionData}
         questionIndex={props.questionIndex}
+        selectQuestionOption={selectQuestionOption}
       />
     </>
   }
@@ -79,13 +94,20 @@ function Question(props) {
     />
     <p>{ text.question }</p>
     <ul>
-        {options.map(currOption => <Option id={currOption.id} name={currOption.name}/>)}
+        {options.map(currOption => <Option 
+          id={currOption.id} 
+          name={currOption.name}
+          questionIndex={props.questionIndex}
+        />)}
     </ul>
     <br/>
   </div>
 }
 
 function Option(props) {
+  const selectRadioButton = () => {
+    props.selectQuestionOption(props.questionIndex, )
+  }
   return <>
     <input type="radio" id={props.id} name="quiz" value={props.id}/>
     <label for={props.id}>{props.name}</label>
