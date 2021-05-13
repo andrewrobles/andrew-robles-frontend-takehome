@@ -114,8 +114,10 @@ function Control(props) {
 }
 
 function Status(props) {
+  const keys = [...Array(props.quizLength).keys()]
   if (props.questionIndex >=0 ) {
     // Add one to zero indexed question number
+    return <>{keys.map(currKey => currKey == props.questionIndex ? <b>{currKey + 1}</b>:currKey + 1)}</>
     return <p>Question {props.questionIndex + 1} of {props.quizLength}</p>
   } else return <></>
 }
