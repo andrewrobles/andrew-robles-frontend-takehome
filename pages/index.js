@@ -14,6 +14,10 @@ export default function Home() {
 
   return (
     <div>
+        <Status
+          questionIndex={state.questionIndex}
+          quizLength={quizQuestionData.length}
+        />
         <Content
           quizQuestionData={quizQuestionData}
           questionIndex={state.questionIndex}
@@ -35,10 +39,12 @@ function Content(props) {
             difficultyLevel={difficultyLevel}
           />
   } else {
-     return <Question 
-            quizQuestionData={props.quizQuestionData}
-            questionIndex={props.questionIndex}
-     />
+    return <>
+      <Question 
+        quizQuestionData={props.quizQuestionData}
+        questionIndex={props.questionIndex}
+      />
+    </>
   }
 }
 
@@ -105,4 +111,11 @@ function Control(props) {
     return <button onClick={startOver}>{endButtonText}</button>
   }
 
+}
+
+function Status(props) {
+  if (props.questionIndex >=0 ) {
+    // Add one to zero indexed question number
+    return <p>Question {props.questionIndex + 1} of {props.quizLength}</p>
+  } else return <></>
 }
