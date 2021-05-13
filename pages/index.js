@@ -2,15 +2,19 @@ import { useState } from 'react'
 
 import quizQuestionData from '../data';
 
+const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
+const estimatedTime='30 minutes'
+const difficultyLevel='6'
+
 export default function Home() {
   // Keep track of question index
   const [state, setState] = useState({
-    'questionIndex': 0
+    'questionIndex': -1 
   })
 
   return (
     <div>
-        <Question 
+        <Content
           quizQuestionData={quizQuestionData}
           questionIndex={state.questionIndex}
         />
@@ -21,6 +25,31 @@ export default function Home() {
         />
     </div>
   )
+}
+
+function Content(props) {
+  if (props.questionIndex == -1) {
+    return <Cover
+            quizDescription={quizDescription}
+            estimatedTime={estimatedTime}
+            difficultyLevel={difficultyLevel}
+          />
+  } else {
+     return <Question 
+            quizQuestionData={props.quizQuestionData}
+            questionIndex={props.questionIndex}
+     />
+  }
+}
+
+function Cover(props) {
+  return <div>
+    <p>{props.quizDescription}</p>
+    <ul>
+      <li>Est. Time: {props.estimatedTime}</li>
+      <li>Difficulty level: {props.difficultyLevel}</li>
+    </ul>
+  </div>
 }
 
 function Question(props) {
@@ -55,18 +84,19 @@ function Control(props) {
   }
 
   const startOver = () => {
-    // Go to first question
+    // Go to quiz start 
     props.setState({
-      'questionIndex': 0
+      'questionIndex': -1 
     })
+  }
+
+  // -1 index signifies quiz has not started 
+  if (props.state['questionIndex'] == -1) {
+      return <button onClick={nextQuestion}>{startButtonText}</button>
   }
 
   // Out of bounds check
   if (props.state['questionIndex'] + 1 < props.quizQuestionData.length) {
-    // Start quiz button
-    if (props.state['questionIndex']==0) {
-      return <button onClick={nextQuestion}>{startButtonText}</button>
-    }
 
     // Taking quiz button
     return <button onClick={nextQuestion}>{takingButtonText}</button>
