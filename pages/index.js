@@ -3,33 +3,22 @@ import { useState } from 'react'
 import quizQuestionData from '../data';
 
 export default function Home() {
-
   // Keep track of question index
   const [state, setState] = useState({
     'questionIndex': 0
   })
 
-  const nextQuestion = () => {
-    
-    // Out of bounds check
-    if (state['questionIndex'] + 1 < quizQuestionData.length) {
-
-      // Go to next question
-      setState({
-        'questionIndex': state['questionIndex'] + 1
-      })
-
-    }
-  }
-
   return (
     <div>
-        
         <Question 
           quizQuestionData={quizQuestionData}
           questionIndex={state.questionIndex}
         />
-        <button onClick={nextQuestion}>Next Question</button>
+        <Control 
+          state={state}
+          setState={setState}
+          quizQuestionData={quizQuestionData}
+        />
     </div>
   )
 }
@@ -45,4 +34,21 @@ function Question(props) {
     </ul>
     <br/>
   </div>
+}
+
+function Control(props) {
+  const nextQuestion = () => {
+
+    // Out of bounds check
+    if (props.state['questionIndex'] + 1 < props.quizQuestionData.length) {
+
+      // Go to next question
+      props.setState({
+        'questionIndex': props.state['questionIndex'] + 1
+      })
+
+    }
+  }
+
+  return <button onClick={nextQuestion}>Next Question</button>
 }
