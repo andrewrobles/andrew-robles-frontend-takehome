@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import quizQuestionData from '../data';
 
+const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
 const estimatedTime='30 minutes'
 const difficultyLevel='6'
@@ -34,6 +35,7 @@ export default function Home() {
 function Content(props) {
   if (props.questionIndex == -1) {
     return <Cover
+            quizTitle={quizTitle}
             quizDescription={quizDescription}
             estimatedTime={estimatedTime}
             difficultyLevel={difficultyLevel}
@@ -50,6 +52,7 @@ function Content(props) {
 
 function Cover(props) {
   return <div>
+    <p>{props.quizTitle}</p>
     <p>{props.quizDescription}</p>
     <ul>
       <li>Est. Time: {props.estimatedTime}</li>
@@ -58,11 +61,21 @@ function Cover(props) {
   </div>
 }
 
+function Header(props) {
+  return <div>
+    <p>{props.quizDescription}</p>
+  </div>
+}
+
 function Question(props) {
   const text = props.quizQuestionData[props.questionIndex]
   const options = props.quizQuestionData[props.questionIndex].options
 
   return <div>
+    <Header
+      quizTitle={quizTitle}
+      quizDescription={quizDescription}
+    />
     <p>{ text.question }</p>
     <ul>
         {options.map(currOption => <li>{currOption.name}</li>)}
