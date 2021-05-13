@@ -37,6 +37,7 @@ function Question(props) {
 }
 
 function Control(props) {
+  const startButtonText = 'Start Quiz'
   const takingButtonText = 'Next Question'
   const endButtonText = 'Start Over'
 
@@ -62,8 +63,15 @@ function Control(props) {
 
   // Out of bounds check
   if (props.state['questionIndex'] + 1 < props.quizQuestionData.length) {
+    // Start quiz button
+    if (props.state['questionIndex']==0) {
+      return <button onClick={nextQuestion}>{startButtonText}</button>
+    }
+
+    // Taking quiz button
     return <button onClick={nextQuestion}>{takingButtonText}</button>
   } else {
+    // End quiz button
     return <button onClick={startOver}>{endButtonText}</button>
   }
 
