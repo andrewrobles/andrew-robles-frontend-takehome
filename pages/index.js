@@ -35,5 +35,14 @@ export default function Home() {
 }
 
 function Question(props) {
-  return <p>{ props.quizQuestionData[props.questionIndex].question }</p>
+  const text = props.quizQuestionData[props.questionIndex]
+  const options = props.quizQuestionData[props.questionIndex].options
+
+  return <div>
+    <p>{ text.question }</p>
+    <ul>
+        {options.map(currOption => <li>{currOption.name}</li>)}
+    </ul>
+    <br/>
+  </div>
 }
