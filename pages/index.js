@@ -78,10 +78,18 @@ function Question(props) {
     />
     <p>{ text.question }</p>
     <ul>
-        {options.map(currOption => <li>{currOption.name}</li>)}
+        {options.map(currOption => <Option id={currOption.id} name={currOption.name}/>)}
     </ul>
     <br/>
   </div>
+}
+
+function Option(props) {
+  return <>
+    <input type="radio" id={props.id} name="quiz" value={props.id}/>
+    <label for={props.id}>{props.name}</label>
+    <br/>
+  </>
 }
 
 function Control(props) {
@@ -131,6 +139,5 @@ function Status(props) {
   if (props.questionIndex >=0 ) {
     // Add one to zero indexed question number
     return <>{keys.map(currKey => currKey == props.questionIndex ? <b>{currKey + 1}</b>:currKey + 1)}</>
-    return <p>Question {props.questionIndex + 1} of {props.quizLength}</p>
   } else return <></>
 }
