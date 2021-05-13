@@ -37,6 +37,9 @@ function Question(props) {
 }
 
 function Control(props) {
+  const takingButtonText = 'Next Question'
+  const endButtonText = 'Start Over'
+
   const nextQuestion = () => {
 
     // Out of bounds check
@@ -50,5 +53,18 @@ function Control(props) {
     }
   }
 
-  return <button onClick={nextQuestion}>Next Question</button>
+  const startOver = () => {
+    // Go to first question
+    props.setState({
+      'questionIndex': 0
+    })
+  }
+
+  // Out of bounds check
+  if (props.state['questionIndex'] + 1 < props.quizQuestionData.length) {
+    return <button onClick={nextQuestion}>{takingButtonText}</button>
+  } else {
+    return <button onClick={startOver}>{endButtonText}</button>
+  }
+
 }
