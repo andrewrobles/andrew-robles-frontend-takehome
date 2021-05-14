@@ -8,7 +8,7 @@ import quizQuestionData from '../../quizQuestionData'
 
 export default function Results() {
     const answerKey=['a1', 'b2', 'c3', 'd4', 'e4']
-    const studentAnswers=['a1', -1, 'c3', -1, -1, -1]
+    const studentAnswers=['a1', 'b1', 'c3', -1, -1, -1]
 
     const [show, setShow] = useState(false)
 
@@ -26,7 +26,7 @@ export default function Results() {
         console.log('Quiz score: ' + score.toString() + ' out of ' + answerKey.length.toString())
         console.log('Student answers: ' + studentAnswers.toString())
         console.log('Answer key: ' + answerKey.toString())
-
+        console.log(getResults(answerKey, studentAnswers))
         return score
     }
 
@@ -82,8 +82,6 @@ const getQuestion = (questionIndex, quizQuestionData) => {
 
 const getAnswer = (questionIndex, questionId, quizQuestionData) => {
   const currQuestion = quizQuestionData[questionIndex]
-
-  details.question = currQuestion.question
 
   if (questionId != -1) {
     const optionIndex = parseInt(questionId[1], 10) - 1
