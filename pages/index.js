@@ -60,7 +60,7 @@ function Content(props) {
       <Question 
         quizQuestionData={props.quizQuestionData}
         questionIndex={props.questionIndex}
-        selectQuestionOption={selectQuestionOption}
+        selectQuestionOption={props.selectQuestionOption}
       />
     </>
   }
@@ -98,6 +98,7 @@ function Question(props) {
           optionId={currOption.id} 
           name={currOption.name}
           questionIndex={props.questionIndex}
+          selectQuestionOption={props.selectQuestionOption}
         />)}
     </ul>
     <br/>
@@ -105,20 +106,12 @@ function Question(props) {
 }
 
 function Option(props) {
-  const [state, setState] = useState({
-    'isSelected': false
-  })
   const selectRadioButton = () => {
     // Record answer in question state
     props.selectQuestionOption(props.questionIndex, props.optionId)
-    
-    // Toggle is selected state
-    setState({
-      'isSelected': props.isSelected ? false : true
-    })
   }
   return <>
-    <input type="radio" id={props.optionId} name="quiz" value={props.optionId} />
+    <input type="radio" id={props.optionId} name="quiz" value={props.optionId} onClick={selectRadioButton} />
     <label for={props.optionId}>{props.name}</label>
     <br/>
   </>
