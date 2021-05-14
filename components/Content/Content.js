@@ -1,13 +1,18 @@
+import Button from '../Button/Button'
+
 import styles from './Content.module.css'
 
 export default function Content(props) {
   if (props.questionIndex == -1) {
-    return <Cover
+    return <div className={`${styles.cover}`}>
+        <Cover
             quizTitle={props.quizTitle}
             quizDescription={props.quizDescription}
             estimatedTime={props.estimatedTime}
             difficultyLevel={props.difficultyLevel}
-          />
+            nextQuestion={props.nextQuestion}
+        />
+    </div>
   } else {
     return <>
       <Question 
@@ -29,6 +34,9 @@ function Cover(props) {
     <p className={`${styles.description}`}>
         Difficulty level: <span className={`${styles.highlight}`}>{props.difficultyLevel}</span>
     </p>
+    <div className={`mt-4`}>
+        <Button onClick={props.nextQuestion} buttonText={'Start Quiz'}/>
+    </div>
   </div>
 }
 

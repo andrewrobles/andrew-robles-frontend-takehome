@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@500&display=swap');
+
 .description {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
@@ -8,4 +9,8 @@
 .highlight {
     font-family: 'Poppins', sans-serif;
     color: #3666B4
+}
+
+.cover{ 
+    height: 300px;
 }

@@ -6,6 +6,7 @@ import quizQuestionData from '../quizQuestionData'
 import Navbar from '../components/Navbar/Navbar'
 import Header from '../components/Header/Header'
 import Content from '../components/Content/Content'
+import Control from '../components/Control/Control'
 
 const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
@@ -35,6 +36,21 @@ export default function Home() {
     })
   }
 
+  const nextQuestion = () => {
+
+    // Out of bounds check
+    if (state['questionIndex'] + 1 < state.quizQuestionData.length) {
+
+      // Go to next question
+      setState({
+        'questionIndex': state['questionIndex'] + 1,
+        'quizQuestionData': state.quizQuestionData,
+        'studentAnswers': state.studentAnswers
+      })
+
+    }
+  }
+
   return (
     <div className={`${styles.index}`}>
         <Navbar/>
@@ -60,11 +76,17 @@ export default function Home() {
                 selectQuestionOption={selectQuestionOption}
                 estimatedTime={estimatedTime}
                 difficultyLevel={difficultyLevel}
+                nextQuestion={nextQuestion}
               />
+              <div className={`pt-5`}>
+
+              </div>
               <Control 
                 state={state}
                 setState={setState}
                 quizQuestionData={quizQuestionData}
+                nextQuestion={nextQuestion}
+                answerKey={answerKey}
               />
             </div>
           </div>
@@ -73,79 +95,7 @@ export default function Home() {
   )
 }
 
-function Control(props) {
-  const startButtonText = 'Start Quiz'
-  const takingButtonText = 'Next Question'
-  const endButtonText = 'Start Over'
 
-  const nextQuestion = () => {
-
-    // Out of bounds check
-    if (props.state['questionIndex'] + 1 < props.quizQuestionData.length) {
-
-      // Go to next question
-      props.setState({
-        'questionIndex': props.state['questionIndex'] + 1,
-        'quizQuestionData': props.state.quizQuestionData,
-        'studentAnswers': props.state.studentAnswers
-      })
-
-    }
-  }
-
-  const calculateScore = (answerKey, studentAnswers) => {
-    var score = 0
-    var i = 0
-    for (i = 0; i < answerKey.length; i++) {
-      if (answerKey[i]==studentAnswers[i]) {
-        score += 1
-      }
-    }
-    console.log('Quiz score: ' + score.toString() + ' out of ' + answerKey.length.toString())
-    console.log('Student answers: ' + studentAnswers.toString())
-    console.log('Answer key: ' + answerKey.toString())
-  }
-
-  const startOver = () => {
-    calculateScore(answerKey, props.state.studentAnswers)
-
-    // Go to quiz start 
-    props.setState({
-      'questionIndex': -1,
-      'quizQuestionData': props.state.quizQuestionData,
-      'studentAnswers': Array(props.state.quizQuestionData.length).fill(-1)
-    })
-  }
-
-  // -1 index signifies quiz has not started 
-  if (props.state['questionIndex'] == -1) {
-      return <Button
-        onClick={nextQuestion}
-        buttonText={startButtonText}
-      />
-  }
-
-  // Out of bounds check
-  if (props.state['questionIndex'] + 1 < props.quizQuestionData.length) {
-
-    // Taking quiz button
-    return <Button
-      onClick={nextQuestion} 
-      buttonText={takingButtonText}
-    />
-  } else {
-    // End quiz button
-    return <Button
-      onClick={startOver}
-      buttonText={endButtonText}
-    />
-  }
-
-}
-
-function Button(props) {
-  return <button className={`btn btn-primary`} onClick={props.onClick}>{props.buttonText}</button>
-}
 
 function Status(props) {
   const keys = [...Array(props.quizLength).keys()]
