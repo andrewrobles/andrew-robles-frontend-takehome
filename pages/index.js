@@ -5,6 +5,7 @@ import styles from './index.module.css'
 import Image from 'next/image'
 
 import quizQuestionData from '../quizQuestionData';
+import Navbar from '../components/Navbar/Navbar'
 
 const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
@@ -36,9 +37,7 @@ export default function Home() {
 
   return (
     <div className={`${styles.index}`}>
-        <nav className={`navbar navbar-dark bg-primary`}>
-          <Image src="/MasteryCodingLogo.png" width='143px' height='50'/>
-        </nav>
+        <Navbar/>
       <div className={`container`}>
           <div className={`card mt-5`}>
             <div className={`card-body`}>
