@@ -23,7 +23,9 @@ export default function Home() {
     studentAnswers[questionIndex] = optionId
 
     setState({
-      'studentAnswers': studentAnswers
+      'questionIndex': state.questionIndex,
+      'quizQuestionData': state.quizQuestionData,
+      'studentAnswers': state.studentAnswers
     })
   }
 
@@ -85,6 +87,9 @@ function Header(props) {
 
 function Question(props) {
   const text = props.quizQuestionData[props.questionIndex]
+  console.log('quiz question data')
+  console.log(props.quizQuestionData)
+  console.log(props.questionIndex)
   const options = props.quizQuestionData[props.questionIndex].options
 
   return <div>
@@ -129,7 +134,9 @@ function Control(props) {
 
       // Go to next question
       props.setState({
-        'questionIndex': props.state['questionIndex'] + 1
+        'questionIndex': props.state['questionIndex'] + 1,
+        'quizQuestionData': props.state.quizQuestionData,
+        'studentAnswers': props.state.studentAnswers
       })
 
     }
@@ -138,7 +145,9 @@ function Control(props) {
   const startOver = () => {
     // Go to quiz start 
     props.setState({
-      'questionIndex': -1 
+      'questionIndex': -1,
+      'quizQuestionData': props.state.quizQuestionData,
+      'studentAnswers': props.state.studentAnswers
     })
   }
 
