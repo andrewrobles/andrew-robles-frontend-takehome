@@ -2,6 +2,8 @@ import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from './index.module.css'
 
+import Image from 'next/image'
+
 import quizQuestionData from '../quizQuestionData';
 
 const quizTitle='C# Programming Language Quiz'
@@ -34,6 +36,9 @@ export default function Home() {
 
   return (
     <div className={`${styles.index}`}>
+        <nav className={`navbar navbar-dark bg-primary`}>
+          <Image src="/MasteryCodingLogo.png" width='143px' height='50'/>
+        </nav>
       <div className={`container`}>
           <div className={`card mt-5`}>
             <div className={`card-body`}>
