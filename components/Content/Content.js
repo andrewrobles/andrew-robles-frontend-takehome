@@ -44,7 +44,7 @@ function Question(props) {
   const text = props.quizQuestionData[props.questionIndex]
   const options = props.quizQuestionData[props.questionIndex].options
 
-  return <div>
+  return <div className={`form-check`}>
     <p>{ text.question }</p>
     <ul>
         {options.map(currOption => <Option 
@@ -65,6 +65,7 @@ function Option(props) {
   }
   return <>
     <input 
+      className={`form-check-input`}
       type="radio" 
       id={props.optionId} 
       name="quiz" 
@@ -72,7 +73,7 @@ function Option(props) {
       onClick={selectRadioButton}
       key={props.questionIndex}
     />
-    <label for={props.optionId}>{props.name}</label>
+    <label className={`form-check-label`} for={props.optionId}>{props.name}</label>
     <br/>
   </>
 }
