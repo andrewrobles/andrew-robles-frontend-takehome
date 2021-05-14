@@ -50,7 +50,7 @@ export default function Results() {
                 results.map(
                   
                   currResult => (
-                    <div className={`alert ` + currResult.isCorrect ? `alert-success`: `alert-danger`}>
+                    <div className={`alert ` + `${currResult.isCorrect ? "alert-success": "alert-danger"}`}>
                       <p>
                         {'Question: ' + currResult.question}
                       </p>
