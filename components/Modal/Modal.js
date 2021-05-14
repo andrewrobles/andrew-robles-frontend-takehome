@@ -1,16 +1,36 @@
 import {useState} from 'react';
 
 import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
 import Button from '../Button/Button'
 
 import styles from './Modal.module.css'
 
 export default function Results() {
+    const answerKey=['a1', 'b2', 'c3', 'd4', 'e4']
+    const studentAnswers=['a1', '', 'c3', '', '', '']
+
     const [show, setShow] = useState(false)
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+
+    const calculateScore = (answerKey, studentAnswers) => {
+        var score = 0
+        var i = 0
+        for (i = 0; i < answerKey.length; i++) {
+            if (answerKey[i]==studentAnswers[i]) {
+                score += 1
+            }
+        }
+        console.log('Quiz score: ' + score.toString() + ' out of ' + answerKey.length.toString())
+        console.log('Student answers: ' + studentAnswers.toString())
+        console.log('Answer key: ' + answerKey.toString())
+
+        return score
+    }
+
+    const studentScore = calculateScore(answerKey, studentAnswers).toString()
+    const maxScore = answerKey.length.toString()
   
     return (
       <>
@@ -23,7 +43,7 @@ export default function Results() {
           </Modal.Header>
 
           <Modal.Body>
-              Here are your quiz results:
+              <p>{'You got ' + studentScore + ' out of ' + maxScore + ' questions correct'}</p>
           </Modal.Body>
         
           <Modal.Footer>
@@ -33,5 +53,4 @@ export default function Results() {
         </Modal>
       </>
     );
-  
 }
