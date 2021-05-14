@@ -30,6 +30,7 @@ export default function Results() {
         return score
     }
 
+    const results = getResults(answerKey, studentAnswers)
     const studentScore = calculateScore(answerKey, studentAnswers).toString()
     const maxScore = answerKey.length.toString()
   
@@ -45,6 +46,28 @@ export default function Results() {
 
           <Modal.Body>
               <p>{'You got ' + studentScore + ' out of ' + maxScore + ' questions correct'}</p>
+              {
+                results.map(
+                  
+                  currResult => (
+                    <div className={`alert ` + currResult.isCorrect ? `alert-success`: `alert-danger`}>
+                      <p>
+                        {'Question: ' + currResult.question}
+                      </p>
+                      <p>
+                        {'You answered: ' + currResult.studentAnswer}
+                      </p>
+                      <p>
+                        {currResult.isCorrect ? 
+                          'Correct!': 
+                          'Incorrect! the correct answer was ' + currResult.actualAnswer
+                        }
+                      </p>
+                    </div>
+                  )
+                )
+              }
+
           </Modal.Body>
         
           <Modal.Footer>
