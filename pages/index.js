@@ -5,6 +5,7 @@ import styles from './index.module.css'
 import quizQuestionData from '../quizQuestionData'
 import Navbar from '../components/Navbar/Navbar'
 import Header from '../components/Header/Header'
+import Content from '../components/Content/Content'
 
 const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
@@ -52,6 +53,8 @@ export default function Home() {
                   quizLength={quizQuestionData.length}
               />
               <Content
+                quizTitle={quizTitle}
+                quizDescription={quizDescription}
                 quizQuestionData={quizQuestionData}
                 questionIndex={state.questionIndex}
                 selectQuestionOption={selectQuestionOption}
@@ -66,82 +69,6 @@ export default function Home() {
       </div>
     </div>
   )
-}
-
-function Content(props) {
-  if (props.questionIndex == -1) {
-    return <Cover
-            quizTitle={quizTitle}
-            quizDescription={quizDescription}
-            estimatedTime={estimatedTime}
-            difficultyLevel={difficultyLevel}
-          />
-  } else {
-    return <>
-      <Question 
-        quizQuestionData={props.quizQuestionData}
-        questionIndex={props.questionIndex}
-        selectQuestionOption={props.selectQuestionOption}
-      />
-    </>
-  }
-}
-
-function Cover(props) {
-  return <div>
-    <p>{quizDescription}</p>
-    <ul>
-      <li>Est. Time: {props.estimatedTime}</li>
-      <li>Difficulty level: {props.difficultyLevel}</li>
-    </ul>
-  </div>
-}
-
-function Headerr(props) {
-  return <div>
-    <p>{props.quizDescription}</p>
-  </div>
-}
-
-function Question(props) {
-  const text = props.quizQuestionData[props.questionIndex]
-  const options = props.quizQuestionData[props.questionIndex].options
-
-  return <div>
-    <Header
-      quizTitle={quizTitle}
-      quizDescription={quizDescription}
-    />
-    <p>{ text.question }</p>
-    <ul>
-        {options.map(currOption => <Option 
-          optionId={currOption.id} 
-          name={currOption.name}
-          questionIndex={props.questionIndex}
-          selectQuestionOption={props.selectQuestionOption}
-        />)}
-    </ul>
-    <br/>
-  </div>
-}
-
-function Option(props) {
-  const selectRadioButton = () => {
-    // Record answer in question state
-    props.selectQuestionOption(props.questionIndex, props.optionId)
-  }
-  return <>
-    <input 
-      type="radio" 
-      id={props.optionId} 
-      name="quiz" 
-      value={props.optionId} 
-      onClick={selectRadioButton}
-      key={props.questionIndex}
-    />
-    <label for={props.optionId}>{props.name}</label>
-    <br/>
-  </>
 }
 
 function Control(props) {
