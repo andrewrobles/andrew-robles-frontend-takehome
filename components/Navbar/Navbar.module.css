@@ -1,4 +1,14 @@
 .logo {
     background-color: white;
-    width: 134px;
+    width: 225px;
+}
+
+.navbarCustom {
+    background-color: #3666B4 !important;
+}
+
+@media (max-width: 600px) {
+    .logo{
+        width: 134px;
+    }
 }
