@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Header from '../components/Header/Header'
 import Content from '../components/Content/Content'
 import Control from '../components/Control/Control'
+import Results from '../components/Modal/Modal'
 
 const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
@@ -47,13 +48,13 @@ export default function Home() {
         'quizQuestionData': state.quizQuestionData,
         'studentAnswers': state.studentAnswers
       })
-
     }
   }
 
   return (
     <div className={`${styles.index}`}>
         <Navbar/>
+        <Results/>
       <div className={`container`}>
           <div className={`mt-5`}>
             <Header 
