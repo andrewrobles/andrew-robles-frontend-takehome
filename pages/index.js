@@ -95,7 +95,7 @@ function Question(props) {
     <p>{ text.question }</p>
     <ul>
         {options.map(currOption => <Option 
-          id={currOption.id} 
+          optionId={currOption.id} 
           name={currOption.name}
           questionIndex={props.questionIndex}
         />)}
@@ -105,12 +105,21 @@ function Question(props) {
 }
 
 function Option(props) {
+  const [state, setState] = useState({
+    'isSelected': false
+  })
   const selectRadioButton = () => {
-    props.selectQuestionOption(props.questionIndex, )
+    // Record answer in question state
+    props.selectQuestionOption(props.questionIndex, props.optionId)
+    
+    // Toggle is selected state
+    setState({
+      'isSelected': props.isSelected ? false : true
+    })
   }
   return <>
-    <input type="radio" id={props.id} name="quiz" value={props.id}/>
-    <label for={props.id}>{props.name}</label>
+    <input type="radio" id={props.optionId} name="quiz" value={props.optionId} />
+    <label for={props.optionId}>{props.name}</label>
     <br/>
   </>
 }
