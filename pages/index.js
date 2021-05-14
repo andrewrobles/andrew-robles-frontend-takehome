@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import styles from './index.module.css'
 
 import quizQuestionData from '../quizQuestionData';
 
@@ -32,25 +33,27 @@ export default function Home() {
   }
 
   return (
-    <div className={`container`}>
-        <div className={`card mt-5`}>
-          <div className={`card-body`}>
-            <Status
+    <div className={`${styles.index}`}>
+      <div className={`container`}>
+          <div className={`card mt-5`}>
+            <div className={`card-body`}>
+              <Status
+                  questionIndex={state.questionIndex}
+                  quizLength={quizQuestionData.length}
+              />
+              <Content
+                quizQuestionData={quizQuestionData}
                 questionIndex={state.questionIndex}
-                quizLength={quizQuestionData.length}
-            />
-            <Content
-              quizQuestionData={quizQuestionData}
-              questionIndex={state.questionIndex}
-              selectQuestionOption={selectQuestionOption}
-            />
-            <Control 
-              state={state}
-              setState={setState}
-              quizQuestionData={quizQuestionData}
-            />
+                selectQuestionOption={selectQuestionOption}
+              />
+              <Control 
+                state={state}
+                setState={setState}
+                quizQuestionData={quizQuestionData}
+              />
+            </div>
           </div>
-        </div>
+      </div>
     </div>
   )
 }
