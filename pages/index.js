@@ -4,8 +4,9 @@ import styles from './index.module.css'
 
 import Image from 'next/image'
 
-import quizQuestionData from '../quizQuestionData';
+import quizQuestionData from '../quizQuestionData'
 import Navbar from '../components/Navbar/Navbar'
+import Header from '../components/Header/Header'
 
 const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
@@ -39,7 +40,14 @@ export default function Home() {
     <div className={`${styles.index}`}>
         <Navbar/>
       <div className={`container`}>
-          <div className={`card mt-5`}>
+          <div className={`mt-5`}>
+            <Header 
+              quizTitle={quizTitle}
+              quizDescription={quizDescription}
+              questionIndex={state.questionIndex}
+            />
+          </div>
+          <div className={`card`}>
             <div className={`card-body`}>
               <Status
                   questionIndex={state.questionIndex}
@@ -83,8 +91,7 @@ function Content(props) {
 
 function Cover(props) {
   return <div>
-    <p>{props.quizTitle}</p>
-    <p>{props.quizDescription}</p>
+    <p>{quizDescription}</p>
     <ul>
       <li>Est. Time: {props.estimatedTime}</li>
       <li>Difficulty level: {props.difficultyLevel}</li>
@@ -92,7 +99,7 @@ function Cover(props) {
   </div>
 }
 
-function Header(props) {
+function Headerr(props) {
   return <div>
     <p>{props.quizDescription}</p>
   </div>
