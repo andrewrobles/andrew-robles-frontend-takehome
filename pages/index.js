@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import quizQuestionData from '../quizQuestionData';
 
@@ -157,19 +158,32 @@ function Control(props) {
 
   // -1 index signifies quiz has not started 
   if (props.state['questionIndex'] == -1) {
-      return <button onClick={nextQuestion}>{startButtonText}</button>
+      return <Button
+        onClick={nextQuestion}
+        buttonText={startButtonText}
+      />
   }
 
   // Out of bounds check
   if (props.state['questionIndex'] + 1 < props.quizQuestionData.length) {
 
     // Taking quiz button
-    return <button onClick={nextQuestion}>{takingButtonText}</button>
+    return <Button
+      onClick={nextQuestion} 
+      buttonText={takingButtonText}
+    />
   } else {
     // End quiz button
-    return <button onClick={startOver}>{endButtonText}</button>
+    return <Button
+      onClick={startOver}
+      buttonText={endButtonText}
+    />
   }
 
+}
+
+function Button(props) {
+  return <button className={`btn btn-primary`} onClick={props.onClick}>{props.buttonText}</button>
 }
 
 function Status(props) {
