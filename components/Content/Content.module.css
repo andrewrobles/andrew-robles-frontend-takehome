@@ -12,5 +12,11 @@
 }
 
 .cover{ 
-    height: 300px;
+    height: 518px;
+}
+
+@media (max-width: 600px) {
+    .cover{
+        height: 358px;
+    }
 }
