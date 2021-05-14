@@ -54,7 +54,6 @@ export default function Home() {
   return (
     <div className={`${styles.index}`}>
         <Navbar/>
-        <Results/>
       <div className={`container`}>
           <div className={`mt-5`}>
             <Header 

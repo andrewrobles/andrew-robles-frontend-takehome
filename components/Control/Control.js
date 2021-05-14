@@ -1,4 +1,5 @@
 import styles from './Control.module.css'
+import Results from '../../components/Modal/Modal'
 
 export default function Control(props) {
   const startButtonText = 'Start Quiz'
@@ -44,9 +45,10 @@ export default function Control(props) {
     />
   } else {
     // End quiz button
-    return <Button
+    return <Results 
+      answerKey={props.answerKey}
+      studentAnswers={props.state.studentAnswers}
       onClick={startOver}
-      buttonText={endButtonText}
     />
   }
 

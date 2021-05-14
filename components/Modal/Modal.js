@@ -6,9 +6,9 @@ import Button from '../Button/Button'
 import styles from './Modal.module.css'
 import quizQuestionData from '../../quizQuestionData'
 
-export default function Results() {
-    const answerKey=['a1', 'b2', 'c3', 'd4', 'e4']
-    const studentAnswers=['a1', 'b1', 'c3', -1, -1, -1]
+export default function Results(props) {
+    const answerKey=props.answerKey
+    const studentAnswers=props.studentAnswers
 
     const [show, setShow] = useState(false)
 
@@ -71,7 +71,7 @@ export default function Results() {
           </Modal.Body>
         
           <Modal.Footer>
-            <Button onClick={handleClose} buttonText={'Close'}/>
+            <Button onClick={props.onClick} buttonText={'Close'}/>
           </Modal.Footer>
 
         </Modal>
