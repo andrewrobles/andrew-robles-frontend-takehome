@@ -1,3 +1,5 @@
+import styles from './Content.module.css'
+
 export default function Content(props) {
   if (props.questionIndex == -1) {
     return <Cover
@@ -19,11 +21,14 @@ export default function Content(props) {
 
 function Cover(props) {
   return <div>
-    <p>{props.quizDescription}</p>
-    <ul>
-      <li>Est. Time: {props.estimatedTime}</li>
-      <li>Difficulty level: {props.difficultyLevel}</li>
-    </ul>
+    <p className={`${styles.description}`}>{props.quizDescription}</p>
+    
+    <p className={`${styles.description}`}>
+        Est. Time: <span className={`${styles.highlight}`}>{props.estimatedTime}</span>
+    </p>
+    <p className={`${styles.description}`}>
+        Difficulty level: <span className={`${styles.highlight}`}>{props.difficultyLevel}</span>
+    </p>
   </div>
 }
 

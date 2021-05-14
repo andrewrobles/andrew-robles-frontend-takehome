@@ -58,6 +58,8 @@ export default function Home() {
                 quizQuestionData={quizQuestionData}
                 questionIndex={state.questionIndex}
                 selectQuestionOption={selectQuestionOption}
+                estimatedTime={estimatedTime}
+                difficultyLevel={difficultyLevel}
               />
               <Control 
                 state={state}
