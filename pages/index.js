@@ -87,9 +87,6 @@ function Header(props) {
 
 function Question(props) {
   const text = props.quizQuestionData[props.questionIndex]
-  console.log('quiz question data')
-  console.log(props.quizQuestionData)
-  console.log(props.questionIndex)
   const options = props.quizQuestionData[props.questionIndex].options
 
   return <div>
@@ -116,7 +113,14 @@ function Option(props) {
     props.selectQuestionOption(props.questionIndex, props.optionId)
   }
   return <>
-    <input type="radio" id={props.optionId} name="quiz" value={props.optionId} onClick={selectRadioButton} />
+    <input 
+      type="radio" 
+      id={props.optionId} 
+      name="quiz" 
+      value={props.optionId} 
+      onClick={selectRadioButton}
+      key={props.questionIndex}
+    />
     <label for={props.optionId}>{props.name}</label>
     <br/>
   </>
