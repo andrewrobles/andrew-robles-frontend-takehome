@@ -62,12 +62,12 @@ export default function Home() {
               questionIndex={state.questionIndex}
             />
           </div>
+          <Status
+              questionIndex={state.questionIndex}
+              quizLength={quizQuestionData.length}
+          />
           <div className={`card border-light shadow ${styles.card}`}>
             <div className={`card-body`}>
-              <Status
-                  questionIndex={state.questionIndex}
-                  quizLength={quizQuestionData.length}
-              />
               <Content
                 quizTitle={quizTitle}
                 quizDescription={quizDescription}
@@ -95,12 +95,23 @@ export default function Home() {
   )
 }
 
-
-
 function Status(props) {
   const keys = [...Array(props.quizLength).keys()]
   if (props.questionIndex >=0 ) {
     // Add one to zero indexed question number
-    return <>{keys.map(currKey => currKey == props.questionIndex ? <b>{currKey + 1}</b>:currKey + 1)}</>
+    return <div>
+      <div class="d-flex flex-row-reverse">
+        <div class="p-2"><nav aria-label="Page navigation example">
+            <ul class="pagination">
+              {
+                keys.map(currKey => currKey == props.questionIndex ? 
+                <li class="page-item active"><a class="page-link" href="#">{currKey + 1}</a></li>:
+                <li class="page-item"><a class="page-link" href="#">{currKey + 1}</a></li>)
+              }
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
   } else return <></>
 }
