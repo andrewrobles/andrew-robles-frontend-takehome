@@ -2,8 +2,6 @@ import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from './index.module.css'
 
-import Image from 'next/image'
-
 import quizQuestionData from '../quizQuestionData'
 import Navbar from '../components/Navbar/Navbar'
 import Header from '../components/Header/Header'

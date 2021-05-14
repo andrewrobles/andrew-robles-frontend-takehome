@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import styles from './Header.module.css'
 
 export default function Header(props) {
