@@ -1,3 +1,7 @@
 .index {
     background-color: #F5f6f6;
 }
+
+.card {
+    border-radius: 8px;
+}

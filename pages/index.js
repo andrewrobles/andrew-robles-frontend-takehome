@@ -62,7 +62,7 @@ export default function Home() {
               questionIndex={state.questionIndex}
             />
           </div>
-          <div className={`card`}>
+          <div className={`card border-light shadow ${styles.card}`}>
             <div className={`card-body`}>
               <Status
                   questionIndex={state.questionIndex}
