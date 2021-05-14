@@ -7,6 +7,7 @@ const quizTitle='C# Programming Language Quiz'
 const quizDescription='A quiz on the basics of C#! Test your knowledge of the first chapter of the Precursor Course.'
 const estimatedTime='30 minutes'
 const difficultyLevel='6'
+const answerKey=['a1', 'b2', 'c3', 'd4', 'e4']
 
 export default function Home() {
   const [state, setState] = useState({
@@ -151,12 +152,27 @@ function Control(props) {
     }
   }
 
+  const calculateScore = (answerKey, studentAnswers) => {
+    var score = 0
+    var i = 0
+    for (i = 0; i < answerKey.length; i++) {
+      if (answerKey[i]==studentAnswers[i]) {
+        score += 1
+      }
+    }
+    console.log('Quiz score: ' + score.toString() + ' out of ' + answerKey.length.toString())
+    console.log('Student answers: ' + studentAnswers.toString())
+    console.log('Answer key: ' + answerKey.toString())
+  }
+
   const startOver = () => {
+    calculateScore(answerKey, props.state.studentAnswers)
+
     // Go to quiz start 
     props.setState({
       'questionIndex': -1,
       'quizQuestionData': props.state.quizQuestionData,
-      'studentAnswers': props.state.studentAnswers
+      'studentAnswers': Array(props.state.quizQuestionData.length).fill(-1)
     })
   }
 
