@@ -36,16 +36,20 @@ export default function Home() {
           questionIndex={state.questionIndex}
           quizLength={quizQuestionData.length}
         />
-        <Content
-          quizQuestionData={quizQuestionData}
-          questionIndex={state.questionIndex}
-          selectQuestionOption={selectQuestionOption}
-        />
-        <Control 
-          state={state}
-          setState={setState}
-          quizQuestionData={quizQuestionData}
-        />
+        <div className={`card m-5`}>
+          <div className={`card-body`}>
+            <Content
+              quizQuestionData={quizQuestionData}
+              questionIndex={state.questionIndex}
+              selectQuestionOption={selectQuestionOption}
+            />
+            <Control 
+              state={state}
+              setState={setState}
+              quizQuestionData={quizQuestionData}
+            />
+          </div>
+        </div>
     </div>
   )
 }
